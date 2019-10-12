@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'design.apps.DesignConfig',
+    'django_admin_generator',
+
 ]
 
 MIDDLEWARE = [

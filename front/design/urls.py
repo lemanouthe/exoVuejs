@@ -5,5 +5,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('login', views.login, name='login'),
     path('post', views.sendregister, name='sendregister'),
+    path('postimage', views.postimage, name='postimage'),
+    
     
 ]
