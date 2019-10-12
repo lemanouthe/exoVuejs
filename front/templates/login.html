@@ -104,11 +104,11 @@
                                                 <div class="col">
                                                     <h1>Register</h1>
                                                     <div class="alert alert-success" v-if="issuccess" role="alert">
-                                                        ${ result }
+                                                        ${ message }
                                                     </div>
-                                                    <!-- <div class="alert alert-danger" v-if="fail" role="alert">
-                                                        ${ result }
-                                                    </div> -->
+                                                    <div class="alert alert-danger" v-if="fail" role="alert">
+                                                        ${ eror }
+                                                    </div>
                                             </div>
                                             </div>
                                             <div class="row">
@@ -155,11 +155,11 @@
                                                 <div class="col">
                                                     <h1>Register</h1>
                                                     <div class="alert alert-success" v-if="issuccess" role="alert">
-                                                        ${ result }
+                                                        ${ message }
                                                     </div>
-                                                    <!-- <div class="alert alert-danger" v-if="fail" role="alert">
-                                                        ${ result }
-                                                    </div> -->
+                                                    <div class="alert alert-danger" v-if="fail" role="alert">
+                                                        ${ eror }
+                                                    </div>
                                                 </div>
                                             </div>
                                             <form enctype="multipart/form-data">
@@ -234,6 +234,8 @@
                 contact: '',
                 isregister: false,
                 result: '',
+                message: 'bien',
+                eror: 'navré',
                 issuccess: false,
                 fail: false,
                 file: '',
@@ -277,16 +279,9 @@
                         console.log(response.data);
                         this.isregister = false;
                         console.log(response.data.succes);
-                        if (response.data.succes){
-                            this.issuccess = true
-                            this.fail = false
-                            this.result = response.data.message
-                        }
-                        else{
-                            this.fail = true
-                            this.issuccess = false
-                            this.result = response.data.message
-                        }
+                        this.result = response.data;
+                        console.log(this.result.succes);
+                       
                     })
                     .catch((err) => {
                         console.log(err);
@@ -311,18 +306,10 @@
                         }).then(response => {
                             console.log(response);
                             this.isregister = false;
-                            if (response.data.succes){
-                                this.issuccess = true
-                                this.fail = false
-                                this.result = response.data.message
-                            }
-                            else{
-                                this.fail = true
-                                this.issuccess = false
-                                this.result = response.data.message
-                            }
-                            console.log("success variable"+this.issuccess)
-                            console.log("error variable"+this.fail)
+                            this.result = response.data;
+                            console.log(this.result.succes);
+                            this.issuccess = this.result.succes
+                            this.fail = !this.result.succes
                         })
                         .catch((err) => {
                             console.log(err);
